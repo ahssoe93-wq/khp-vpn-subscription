@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KHP VPN — Admin Dashboard</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #0b0f14; color: #e8eef4; margin: 0; padding: 24px; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sub { color: #8fa3b3; font-size: 13px; margin-bottom: 20px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .card { background: #141b24; border: 1px solid #26313d; border-radius: 14px; padding: 18px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .up { background: #22e07a; }
+  .down { background: #ff4d4d; }
+  .row { display: flex; justify-content: space-between; font-size: 14px; padding: 4px 0; }
+  .row span:first-child { color: #8fa3b3; }
+  .key { font-size: 12px; color: #8fa3b3; word-break: break-all; margin-top: 10px; }
+  a { color: #22e07a; }
+</style>
+</head>
+<body>
+<h1>KHP VPN — Admin Dashboard</h1>
+<div class="sub">Free app Server Keys only. Updated <span id="updated">…</span> · <a href="admin_status.json">admin_status.json</a></div>
+<div class="grid" id="grid"><p>Loading…</p></div>
+<script>
+fetch('admin_status.json', { cache: 'no-store' })
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById('updated').textContent = d.updated_at || 'unknown';
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    for (const [name, s] of Object.entries(d.servers || {})) {
+      const up = s.status === 'up';
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML =
+        '<h2><span class="dot ' + (up ? 'up' : 'down') + '"></span>' + name + ' — ' + (up ? 'UP' : 'DOWN') + '</h2>' +
+        '<div class="row"><span>Online now</span><span>' + (s.online == null ? '—' : s.online) + '</span></div>' +
+        '<div class="row"><span>Total clients</span><span>' + (s.total == null ? '—' : s.total) + '</span></div>' +
+        '<div class="key">Free key: ' + (s.free_key || '—') + '</div>';
+      grid.appendChild(card);
+    }
+  })
+  .catch(() => { document.getElementById('grid').innerHTML = '<p>Could not load admin_status.json</p>'; });
+</script>
+</body>
+</html>
