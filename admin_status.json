@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-11-27 14:28 UTC",
+  "updated_at": "2026-11-27 14:58 UTC",
   "servers": {
     "SG": {
       "status": "up",
       "online": 1,
-      "total": 18,
+      "total": 19,
       "free_key": "KHP-FREE-APP-SG___25_11_2027"
     },
     "JP": {
       "status": "up",
-      "online": 2,
+      "online": 3,
       "total": 9,
       "free_key": "KHP-FREE-APP-JP___25_11_2027"
     },
     "TH": {
       "status": "up",
       "online": null,
-      "total": 145,
+      "total": 146,
       "free_key": "KHP-FREE-APP-TH___25_11_2027"
     }
   }
