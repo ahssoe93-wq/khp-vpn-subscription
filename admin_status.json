@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-28 06:58 UTC",
+  "updated_at": "2026-11-28 07:28 UTC",
   "servers": {
     "SG": {
       "status": "up",
@@ -9,7 +9,7 @@
     },
     "JP": {
       "status": "up",
-      "online": 3,
+      "online": 6,
       "total": 11,
       "free_key": "KHP-FREE-APP-JP___25_11_2027"
     },
