@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-11-28 07:58 UTC",
+  "updated_at": "2026-11-28 08:28 UTC",
   "servers": {
     "SG": {
       "status": "up",
-      "online": 3,
+      "online": 2,
       "total": 21,
       "free_key": "KHP-FREE-APP-SG___25_11_2027"
     },
